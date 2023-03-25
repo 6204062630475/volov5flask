@@ -3,8 +3,7 @@ import pymongo
 import json
 from bson.objectid import ObjectId
 from camera import VideoCamera
-
-#from main import A
+from datetime import datetime
 app = Flask(__name__)
 try:
     mongo = pymongo.MongoClient(
@@ -17,27 +16,26 @@ try:
 except:
     print("Error Cannot connect to db")
 #-------------------------------------------
-@app.route('/count', methods=['GET'])
-def get_som_users():
-    try:
-        data = list(db.count.find())
-        for user in data:
-            user["_id"] = str(user["_id"])
-        return Response(
-            response = json.dumps(data),
-            status=500,
-            mimetype="application/json"
-        )
-    except Exception as ex:
-        print(ex)
-        return Response(response = json.dumps({"message":"cannot read"}),status=500,mimetype="application/json")
+# @app.route('/count', methods=['GET'])
+# def get_count():
+#     try:
+#         data = list(db.count.find())
+#         for user in data:
+#             user["_id"] = str(user["_id"])
+#         return Response(
+#             response = json.dumps(data),
+#             status=500,
+#             mimetype="application/json"
+#         )
+#     except Exception as ex:
+#         print(ex)
+#         return Response(response = json.dumps({"message":"cannot read"}),status=500,mimetype="application/json")
 #-------------------------------------------
-def create_user(a):
-    # GenVideoCamera,AVideoCamera = gen(VideoCamera())
-    #aServer = str(main.showa(a))
-    #print(aServer)
+def create_count(a):
+    now = datetime.now()
+    dt_string = now.strftime("%d/%m/%Y %H:%M:%S")
     try:
-        user = {"count":a,"Date":"17-3-66"}
+        user = {"count":a,"Date":dt_string}
         dbResponse = db.count.insert_one(user)
         print(dbResponse.inserted_id)
         return Response(
