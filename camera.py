@@ -2,7 +2,7 @@ import cv2
 import torch
 import numpy as np        
         
-model = torch.hub.load('ultralytics/yolov5', 'custom',path='fishtrainV0.946.pt',force_reload=True)
+model = torch.hub.load('ultralytics/yolov5', 'custom',path='fishtrainIV0.89.pt',force_reload=True)
 area=[(80,15),(80,458),(600,458),(600,15)]
 class VideoCamera(object):
     def __init__(self):

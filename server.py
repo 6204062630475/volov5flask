@@ -7,9 +7,11 @@ from datetime import datetime
 app = Flask(__name__)
 try:
     mongo = pymongo.MongoClient(
-        host="localhost",
-        port=27017,
-        serverSelectionTimeoutMS= 1000
+        # host="localhost",
+        # port=27017,
+        # serverSelectionTimeoutMS= 1000
+
+        "mongodb+srv://fishdb:fishdb@cluster0.6jeeb1j.mongodb.net/?retryWrites=true&w=majority"
     )
     db = mongo.historycount  
     mongo.server_info()
@@ -33,9 +35,9 @@ except:
 #-------------------------------------------
 def create_count(a):
     now = datetime.now()
-    dt_string = now.strftime("%d/%m/%Y %H:%M:%S")
+    #dt_string = now.strftime("%d/%m/%Y %H:%M:%S")
     try:
-        user = {"count":a,"Date":dt_string}
+        user = {"count":a,"Date":now}
         dbResponse = db.count.insert_one(user)
         print(dbResponse.inserted_id)
         return Response(
