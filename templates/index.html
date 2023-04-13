@@ -24,6 +24,50 @@
 </head>
 
 <body>
+  <!---------------------------------------------------------------------------------------------------------- .. -->
+  <style>
+    #loader {
+      border: 12px solid #f3f3f3;
+      border-radius: 50%;
+      border-top: 12px solid #444444;
+      width: 70px;
+      height: 70px;
+      animation: spin 1s linear infinite;
+    }
+
+    @keyframes spin {
+      100% {
+        transform: rotate(360deg);
+      }
+    }
+
+    .center {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      margin: auto;
+    }
+  </style>
+  <div id="loader" class="center"></div>
+
+  <script>
+    document.onreadystatechange = function () {
+      if (document.readyState !== "complete") {
+        document.querySelector(
+          "#app").style.visibility = "hidden";
+        document.querySelector(
+          "#loader").style.visibility = "visible";
+      } else {
+        document.querySelector(
+          "#loader").style.display = "none";
+        document.querySelector(
+          "#app").style.visibility = "visible";
+      }
+    };
+  </script>
+  <!---------------------------------------------------------------------------------------------------------- .. -->
   <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
     <div class="container-fluid">
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#collapsibleNavbar">
@@ -41,14 +85,13 @@
       </div>
     </div>
   </nav>
-  <h1>Counting Fish Web Application</h1>
-  <div>
+  <div id="app">
+    <h1>Counting Fish Web Application</h1>
     <img id="bg" class="responsive" src="{{ url_for('video_feed') }}"><br><br>
-    <form action="/" method="POST">
+    <form action="history.html" method="POST">
       <input type="submit" class="btn btn-primary" value="count" name="test">
     </form>
   </div>
-
 </body>
 
 </html>
