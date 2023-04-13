@@ -15,7 +15,7 @@ class VideoCamera(object):
     def get_frame(self):
         success, image = self.video.read()
         results=model(image)
-        # a=np.squeeze(results.render())
+        # a=np.squeeze(results.render());;;
         list=[]
         for index, row in results.pandas().xyxy[0].iterrows():
             x1 = int(row['xmin'])
