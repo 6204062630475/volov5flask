@@ -1,14 +1,8 @@
-from flask import Flask, render_template, Response, request, jsonify, url_for, session
+from flask import Flask, render_template, Response, request, jsonify, session
 from camera import VideoCamera
-import cv2
 from server import create_count
 from pymongo import MongoClient
 from flask_pymongo import PyMongo
-import numpy as np
-import pandas as pd
-import matplotlib.pyplot as plt
-import io
-import base64
 
 
 app = Flask(__name__)
